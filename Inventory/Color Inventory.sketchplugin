@@ -45,7 +45,7 @@ function chooseAction() {
 	}
 
 	// create the dialog with drop down
-	var choice = com.getflourish.common.createSelect('Color Inventory', options, 0)
+	var choice = com.getflourish.common.createSelect('Color Inventory HACKED', options, 0)
 
 	// get the choice
 	var index = choice[1];

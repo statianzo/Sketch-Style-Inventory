@@ -867,7 +867,7 @@ com.getflourish = (function () {
                             colorName = colorName.substr(colorName.indexOf(">") + 2);
                         }
                         if (data[pName] == null) data[pName] = {};
-                        data[pName][colorName] = hexColor;
+                        data[pName][colorName] = MSColor.colorWithSVGString(hexColor);
                     }
                 }
             }
