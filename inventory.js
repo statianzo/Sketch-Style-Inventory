@@ -832,6 +832,8 @@ com.getflourish = (function () {
             var colorSheet = my.common.getArtboardByPageAndName(doc.currentPage(), my.config.colorInventoryName);
             var hexColor = null;
             var pName;
+            var msColor = null;
+            var rgba = null;
 
             // get defined colors, rename existing swatches
             var predicate = NSPredicate.predicateWithFormat("className == %@ AND name != %@", "MSLayerGroup", "Untitled Color Swatch");
@@ -856,6 +858,15 @@ com.getflourish = (function () {
                         .indexOf("Color Swatch") == 0) {
                         hexColor = currentLayer.name().substr(13);
                         msColor = MSColor.colorWithSVGString(hexColor);
+                        rgba = ['rgba(',
+                          [
+                            String(Math.ceil(msColor.red() * 255)),
+                            String(Math.ceil(msColor.green() * 255)),
+                            String(Math.ceil(msColor.blue() * 255)),
+                            String(msColor.alpha().toFixed(2))
+                          ].join(', '),
+                          ')'
+                        ].join('');
 
                         // remember color and name
                         // todo: format string for use in SCSS?
@@ -867,7 +878,7 @@ com.getflourish = (function () {
                             colorName = colorName.substr(colorName.indexOf(">") + 2);
                         }
                         if (data[pName] == null) data[pName] = {};
-                        data[pName][colorName] = msColor.stringValueWithAlpha(true);
+                        data[pName][colorName] = rgba;
                     }
                 }
             }
