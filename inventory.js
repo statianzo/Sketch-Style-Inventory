@@ -854,8 +854,8 @@ com.getflourish = (function () {
                     var currentLayer = layers[i];
                     if (currentLayer.name()
                         .indexOf("Color Swatch") == 0) {
-                        hexColor = currentLayer.name()
-                            .substr(13);
+                        hexColor = currentLayer.name().substr(13);
+                        msColor = MSColor.colorWithSVGString(hexColor);
 
                         // remember color and name
                         // todo: format string for use in SCSS?
@@ -867,7 +867,7 @@ com.getflourish = (function () {
                             colorName = colorName.substr(colorName.indexOf(">") + 2);
                         }
                         if (data[pName] == null) data[pName] = {};
-                        data[pName][colorName] = MSColor.colorWithSVGString(hexColor);
+                        data[pName][colorName] = msColor.stringValueWithAlpha(true);
                     }
                 }
             }
